@@ -4,7 +4,11 @@ struct UniformMesh{dim,T}
     nelements::SVector{dim,Int64}
     element_size::SVector{dim,T}
     total_number_of_elements::Int64
+    total_number_of_faces::Int64
     faces_per_element::Int64
+    face_to_hybrid_element_number::Matrix{Int64}
+    face_indicator::Matrix{Symbol}
+    total_number_of_hybrid_elements::Int64
     function UniformMesh(x0::SVector{dim,T},widths::SVector{dim,T},
         nelements::SVector{dim,Int64}) where {dim,T}
 
@@ -15,8 +19,19 @@ struct UniformMesh{dim,T}
         total_number_of_elements = prod(nelements)
         faces_per_element = get_number_of_element_faces(dim)
 
+        total_number_of_faces = faces_per_element*total_number_of_elements
+
+        g,bdrynode = face_connectivity_graph(nelements,total_number_of_elements,
+            faces_per_element)
+        total_number_of_hybrid_elements = ne(g)
+        face_to_hybrid_element_number = get_face_to_hybrid_element_number(g,total_number_of_elements,
+            faces_per_element)
+        face_indicator = get_face_indicator(g,total_number_of_elements,
+            faces_per_element)
+
         new{dim,T}(x0,widths,nelements,element_size,
-            total_number_of_elements,faces_per_element)
+            total_number_of_elements,total_number_of_faces,faces_per_element,
+            face_to_hybrid_element_number,face_indicator,total_number_of_hybrid_elements)
     end
 end
 
