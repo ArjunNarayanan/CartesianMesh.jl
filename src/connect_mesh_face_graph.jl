@@ -167,8 +167,8 @@ function get_face_indicator(g,total_number_of_elements,faces_per_element)
             faceid = e.src == bdrynode ? e.dst : e.src
             update_face_indicator!(face_indicator,:boundary,faceid,faces_per_element)
         else
-            update_face_indicator!(face_indicator,:interior,e.src,faces_per_element)
-            update_face_indicator!(face_indicator,:interior,e.dst,faces_per_element)
+            update_face_indicator!(face_indicator,:internal,e.src,faces_per_element)
+            update_face_indicator!(face_indicator,:internal,e.dst,faces_per_element)
         end
     end
     return face_indicator
