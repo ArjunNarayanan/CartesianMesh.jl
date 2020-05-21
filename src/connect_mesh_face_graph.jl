@@ -117,11 +117,11 @@ function face_connectivity_graph(nelements::SVector{2},
     return g,num_vertices
 end
 
-function global_faceid_to_local_faceid(faceid::Int64,faces_per_element::Int64)
+function global_faceid_to_local_faceid(faceid::Z,faces_per_element::Z) where {Z<:Integer}
     return (faceid-1)%faces_per_element+1
 end
 
-function global_faceid_to_elemid(faceid::Int64,faces_per_element::Int64)
+function global_faceid_to_elemid(faceid::Z,faces_per_element::Z) where {Z<:Integer}
     return ceil(Int,faceid/faces_per_element)
 end
 
