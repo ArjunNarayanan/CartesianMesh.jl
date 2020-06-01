@@ -1,9 +1,9 @@
 module CartesianMesh
 
-using StaticArrays, LightGraphs
+using StaticArrays
 
 include("uniform_mesh.jl")
-include("connect_mesh_face_graph.jl")
+include("mesh_attributes.jl")
 
 export UniformMesh
 
