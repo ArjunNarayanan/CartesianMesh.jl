@@ -27,7 +27,7 @@ mesh = CM.UniformMesh(x0,widths,nelements)
 @test allequal(mesh.widths,widths)
 @test allequal(mesh.nelements,nelements)
 @test mesh.total_number_of_elements == 12
-@test mesh.bdryflag == 13
+@test mesh.bdryflag == 0
 
 element_size = [1.,1.]
 @test allequal(mesh.element_size,element_size)
@@ -45,6 +45,6 @@ mesh = CM.UniformMesh(x0,widths,nelements)
 @test allequal(mesh.widths,widths)
 @test allequal(mesh.nelements,nelements)
 @test mesh.total_number_of_elements == 30
-@test mesh.bdryflag == 31
+@test mesh.bdryflag == 0
 element_size = [3.0/5,5.0/6]
 @test allequal(mesh.element_size,element_size)

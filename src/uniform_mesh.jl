@@ -13,7 +13,7 @@ struct UniformMesh{dim,T}
 
         element_size = widths ./ nelements
         total_number_of_elements = prod(nelements)
-        bdryflag = total_number_of_elements+1
+        bdryflag = 0
 
         new{dim,T}(x0,widths,nelements,element_size,total_number_of_elements,bdryflag)
 
