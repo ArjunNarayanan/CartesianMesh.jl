@@ -33,3 +33,7 @@ function neighbors(mesh::UniformMesh{2},idx)
     return [bottom,right,top,left]
 
 end
+
+function faces_per_cell(mesh::UniformMesh{2})
+    return 4
+end

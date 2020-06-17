@@ -41,3 +41,5 @@ nbrs = CM.neighbors(mesh,5)
 @test allequal(nbrs,[4,8,6,2])
 nbrs = CM.neighbors(mesh,3)
 @test allequal(nbrs,[2,6,mesh.bdryflag,mesh.bdryflag])
+
+@test CM.faces_per_cell(mesh) == 4
