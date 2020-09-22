@@ -1,3 +1,7 @@
+function dimension(mesh::UniformMesh{dim}) where dim
+    return dim
+end
+
 function number_of_elements(mesh)
     return mesh.total_number_of_elements
 end

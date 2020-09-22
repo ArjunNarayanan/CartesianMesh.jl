@@ -1,6 +1,4 @@
 using Test
-using StaticArrays
-# using Revise
 using CartesianMesh
 
 CM = CartesianMesh
@@ -11,18 +9,17 @@ function allequal(v1,v2)
     return all(v1 .≈ v2)
 end
 
-x0 = @SVector [1.0,2.0]
-widths = @SVector [-1.,2.]
-nelements = @SVector [5,-6]
+x0 = [1.0,2.0]
+widths =  [-1.,2.]
+nelements =  [5,-6]
 @test_throws AssertionError CM.UniformMesh(x0,widths,nelements)
-widths = @SVector [4.,5.]
+widths =  [4.,5.]
 @test_throws AssertionError CM.UniformMesh(x0,widths,nelements)
 
-widths = @SVector [3.,4.]
-nelements = @SVector [3,4]
+widths =  [3.,4.]
+nelements =  [3,4]
 
 mesh = CM.UniformMesh(x0,widths,nelements)
-@test typeof(mesh) == CM.UniformMesh{2,float_type}
 @test allequal(mesh.x0,x0)
 @test allequal(mesh.widths,widths)
 @test allequal(mesh.nelements,nelements)

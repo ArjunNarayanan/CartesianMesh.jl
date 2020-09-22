@@ -1,6 +1,4 @@
 using Test
-using StaticArrays
-# using Revise
 using CartesianMesh
 
 CM = CartesianMesh
