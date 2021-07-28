@@ -21,7 +21,12 @@ function element(mesh::UniformMesh{2},idx)
     xL = mesh.x0 + [(elx-1)*mesh.element_size[1],(ely-1)*mesh.element_size[2]]
     xR = mesh.x0 + [(elx)*mesh.element_size[1],(ely)*mesh.element_size[2]]
     return xL,xR
+end
 
+function element(mesh::UniformMesh{1},idx)
+    xL = mesh.x0 + (idx-1)*mesh.element_size
+    xR = xL + mesh.element_size
+    return xL,xR
 end
 
 function neighbors(mesh::UniformMesh{2},idx)
@@ -38,6 +43,18 @@ function neighbors(mesh::UniformMesh{2},idx)
 
 end
 
+function neighbors(mesh::UniformMesh{1},idx)
+    nelements = number_of_elements(mesh)
+    @assert 1 <= idx <= nelements
+    left = idx == 1 ? 0 : idx-1
+    right = idx == nelements ? 0 : idx+1
+    return [left,right]
+end
+
 function faces_per_cell(mesh::UniformMesh{2})
     return 4
+end
+
+function faces_per_cell(mesh::UniformMesh{1})
+    return 2
 end
